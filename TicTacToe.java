@@ -8,6 +8,7 @@ public class TicTacToe {
     JPanel newPanel = new JPanel();
     JButton[] btns = new JButton[9];
     JButton newGame = new JButton("New Game");
+    String lastPlayer = "_";
 
     public TicTacToe() {
         ttt.setLayout(new GridLayout(3, 3));
@@ -38,13 +39,15 @@ public class TicTacToe {
         public void actionPerformed(ActionEvent e) {
             JButton source = (JButton) e.getSource();
             String currentText = source.getText();
-            
-            if (currentText.equals("_")) {
+
+            if (currentText.equals("_") && !lastPlayer.equals("X")) {
                 source.setText("X");
-            } else if(count%2 != 1) {
+                lastPlayer = "X";
+            } else if (currentText.equals("_") && lastPlayer.equals("X")){
                 source.setText("0");
+                lastPlayer = "0";
             } else {
-                source.setText("X");
+                // do nothing
             }
         }
     }
